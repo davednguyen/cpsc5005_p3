@@ -63,7 +63,8 @@ int main() {
 
 bool processLine(string line, PatientPriorityQueue &priQueue) {
     // get command
-    string cmd = delimitBySpace(line);
+    //string cmd = delimitBySpace(line);
+    string cmd = line;
     if (cmd.length() == 0) {
         cout << "Error: no command given.";
         return false;

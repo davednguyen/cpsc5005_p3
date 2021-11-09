@@ -8,6 +8,11 @@
 
 class Patient {
 
+private:
+    struct Priority{
+        int level;
+
+    };
 };
 
 
