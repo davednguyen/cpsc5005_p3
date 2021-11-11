@@ -7,6 +7,9 @@
 
 
 class PatientPriorityQueue {
+    //arrival number assigned by priority queue
+    //arriavle
+
 
 };
 
