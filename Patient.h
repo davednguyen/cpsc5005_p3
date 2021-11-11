@@ -26,9 +26,9 @@ public:
     Patient operator - (const Patient &); // Overloaded -
     Patient operator ++ ();				    // Prefix ++
     Patient operator ++ (int);			    // Postfix ++
-    bool operator > (Patient);		// Overloaded >
-    bool operator < (Patient);		// Overloaded <
-    bool operator == (Patient);		// Overloaded ==
+    bool operator > (Patient);		// Overloaded > //done
+    bool operator < (Patient);		// Overloaded < //done
+    bool operator == (Patient);		// Overloaded == //done
 
     //in driver files may need to save patients
     //priority code base on arrival

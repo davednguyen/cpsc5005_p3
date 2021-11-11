@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+
 using namespace std;
 
 
@@ -63,14 +64,32 @@ int main() {
 
 bool processLine(string line, PatientPriorityQueue &priQueue) {
     // get command
-    //string cmd = delimitBySpace(line);
-    string cmd = line;
+    string cmd = delimitBySpace(line);
+    //string cmd = line;
     if (cmd.length() == 0) {
         cout << "Error: no command given.";
         return false;
     }
 
-    // process user input
+//    // process user input
+//    if (cmd == "help")
+//        help();
+//    else if (cmd == "add")
+//        addPatientCmd(line, priQueue);
+//    else if (cmd == "peek")
+//        peekNextCmd(priQueue);
+//    else if (cmd == "next")
+//        removePatientCmd(priQueue);
+//    else if (cmd == "list")
+//        showPatientListCmd(priQueue);
+//    else if (cmd == "load")
+//        execCommandsFromFileCmd(line, priQueue);
+//    else if (cmd == "quit")
+//        return false;
+//    else
+//        cout << "Error: unrecognized command: " << cmd << endl;
+
+// process user input
     if (cmd == "help")
         help();
     else if (cmd == "add")
@@ -87,7 +106,6 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
         return false;
     else
         cout << "Error: unrecognized command: " << cmd << endl;
-
     return true;
 }
 
@@ -106,9 +124,20 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
         return;
     }
 
+    int code = 0;
+    if(priority == "immediate")
+        code = 1;
+    if(priority == "emergency")
+        code = 2;
+    if(priority == "urgent")
+        code = 3;
+    if(priority == "minimal")
+        code = 4;
+   Patient first(name, code);
     // TODO: add logic to remove leading/trailing spaces
     // TODO: validate priority is between 1 and 4
     // TODO: add patient
+    cout << "patient :" << name << "with codes: " << code << "added into patient portal" << endl;
 }
 
 void peekNextCmd(PatientPriorityQueue &priQueue) {
@@ -164,6 +193,8 @@ void welcome() {
 
 void goodbye() {
     // TODO
+    //return 0;
+    exit;
 }
 
 void help() {
