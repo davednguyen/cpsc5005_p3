@@ -155,6 +155,8 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
 
 void peekNextCmd(PatientPriorityQueue &priQueue) {
     // TODO: shows next patient to be seen
+    Patient patient = priQueue.peek();
+    //cout << patient.to_string() << endl;
 }
 
 void removePatientCmd(PatientPriorityQueue &priQueue) {

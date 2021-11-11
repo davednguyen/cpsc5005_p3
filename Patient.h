@@ -21,6 +21,7 @@ public:
     void setPriorityCode(int);
     void setArrivalOrder(int);
     int getPriorityCode();
+    string getName();
 
     Patient operator + (const Patient &); // Overloaded +
     Patient operator - (const Patient &); // Overloaded -
