@@ -41,8 +41,10 @@ void execCommandsFromFileCmd(string, PatientPriorityQueue &);
 // lines as if they were typed into the command prompt.
 
 string delimitBySpace(string &);
+//string delimitBySpace(string);
 // Delimits (by space) the string from user or file input.
 
+PatientPriorityQueue patientList;
 
 int main() {
     // declare variables
@@ -60,6 +62,10 @@ int main() {
 
     // goodbye message
     goodbye();
+//    cout << "test to create a patient" << endl;
+//    Patient first("David Nguyen", 1);
+//    cout << "new patient created" << endl;
+//    cout << "get patient info: " << first.to_string() << endl;
 }
 
 bool processLine(string line, PatientPriorityQueue &priQueue) {
@@ -71,25 +77,7 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
         return false;
     }
 
-//    // process user input
-//    if (cmd == "help")
-//        help();
-//    else if (cmd == "add")
-//        addPatientCmd(line, priQueue);
-//    else if (cmd == "peek")
-//        peekNextCmd(priQueue);
-//    else if (cmd == "next")
-//        removePatientCmd(priQueue);
-//    else if (cmd == "list")
-//        showPatientListCmd(priQueue);
-//    else if (cmd == "load")
-//        execCommandsFromFileCmd(line, priQueue);
-//    else if (cmd == "quit")
-//        return false;
-//    else
-//        cout << "Error: unrecognized command: " << cmd << endl;
-
-// process user input
+    // process user input
     if (cmd == "help")
         help();
     else if (cmd == "add")
@@ -106,6 +94,24 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
         return false;
     else
         cout << "Error: unrecognized command: " << cmd << endl;
+
+// process user input
+//    if (cmd == "help")
+//        help();
+//    else if (cmd == "add")
+//        addPatientCmd(line, priQueue);
+//    else if (cmd == "peek")
+//        peekNextCmd(priQueue);
+//    else if (cmd == "next")
+//        removePatientCmd(priQueue);
+//    else if (cmd == "list")
+//        showPatientListCmd(priQueue);
+//    else if (cmd == "load")
+//        execCommandsFromFileCmd(line, priQueue);
+//    else if (cmd == "quit")
+//        return false;
+//    else
+//        cout << "Error: unrecognized command: " << cmd << endl;
     return true;
 }
 
@@ -133,11 +139,18 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
         code = 3;
     if(priority == "minimal")
         code = 4;
-   Patient first(name, code);
-    // TODO: add logic to remove leading/trailing spaces
-    // TODO: validate priority is between 1 and 4
-    // TODO: add patient
-    cout << "patient :" << name << "with codes: " << code << "added into patient portal" << endl;
+
+    if(code != 0){
+        Patient first(name, code);
+        // TODO: add logic to remove leading/trailing spaces
+        // TODO: validate priority is between 1 and 4
+        // TODO: add patient
+        cout << "patient created :" << name << "with codes: " << code << " added into patient portal" << endl;
+        patientList.add(first);
+        cout << "added patient to patient list" << endl;
+    }else
+        cout << "enter correct priority code"<< endl;
+
 }
 
 void peekNextCmd(PatientPriorityQueue &priQueue) {
@@ -174,6 +187,7 @@ void execCommandsFromFileCmd(string filename, PatientPriorityQueue &priQueue) {
     infile.close();
 }
 
+//string delimitBySpace(string &s) {
 string delimitBySpace(string &s) {
     unsigned pos = 0;
     char delimiter = ' ';
