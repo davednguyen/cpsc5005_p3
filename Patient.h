@@ -18,6 +18,17 @@ public:
     void add (string, int);
     string to_string() const;
     //overloaded operators
+    void setPriorityCode(int);
+    void setArrivalOrder(int);
+    int getPriorityCode();
+
+    Patient operator + (const Patient &); // Overloaded +
+    Patient operator - (const Patient &); // Overloaded -
+    Patient operator ++ ();				    // Prefix ++
+    Patient operator ++ (int);			    // Postfix ++
+    bool operator > (Patient);		// Overloaded >
+    bool operator < (Patient);		// Overloaded <
+    bool operator == (Patient);		// Overloaded ==
 
     //in driver files may need to save patients
     //priority code base on arrival
@@ -27,6 +38,8 @@ public:
     //default contruucstor
     //overloaded operators ==, overload < and > operators
     //setter and getters
+    // Overloaded operator functions
+
 
 private:
     //variables
@@ -37,5 +50,79 @@ private:
 
 };
 
+/*
+ *
+ */
+Patient::Patient(string name, int code) {
+    this->name = name;
+    this->priorityCode = code;
+}
 
+/*
+ *
+ */
+string Patient::to_string() {
+    stringstream  ss;
+    ss << "Name: " << name << " priority code: " << priorityCode ;
+    return ss.str();
+}
+
+/*
+ *
+ */
+int Patient::getPriorityCode() {
+    return priorityCode;
+}
+
+/*
+ *
+ */
+void Patient::setPriorityCode(int code) {
+    priorityCode = code;
+}
+
+/*
+ *
+ */
+void Patient::setArrivalOrder(int order) {
+    arrivalOrder = order;
+}
+
+/*
+ *
+ */
+bool Patient::operator == (Patient patient)
+{
+    if(priorityCode == patient.getPriorityCode())
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/*
+ *
+ */
+bool Patient::operator < (Patient patient) {
+    if(priorityCode < patient.getPriorityCode())
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/*
+ *
+ */
+bool Patient::operator > (Patient patient)
+{
+    if(priorityCode > patient.getPriorityCode())
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
 #endif //P3_PATIENT_H
