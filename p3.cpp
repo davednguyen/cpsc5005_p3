@@ -72,7 +72,6 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
         cout << "Error: no command given.";
         return false;
     }
-
     // process user input
     if (cmd == "help")
         help();
@@ -99,7 +98,6 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
 
 void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
     string priority, name;
-
     // get priority and name
     priority = delimitBySpace(line);
     if (priority.length() == 0) {
