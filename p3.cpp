@@ -1,9 +1,9 @@
 // p3.cpp
 // TODO: add functional documentation (and inline comments, as necessary)
 
-#include "PatientPriorityQueue.h"
+//#include "PatientPriorityQueue.h"
 #include "Patient.h"
-
+#include "PatientPriorityQueue.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -44,7 +44,7 @@ string delimitBySpace(string &);
 //string delimitBySpace(string);
 // Delimits (by space) the string from user or file input.
 
-PatientPriorityQueue patientList;
+//PatientPriorityQueue patientList;
 
 int main() {
     // declare variables
@@ -146,8 +146,10 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
         // TODO: validate priority is between 1 and 4
         // TODO: add patient
         cout << "patient created :" << name << "with codes: " << code << " added into patient portal" << endl;
-        patientList.add(first);
+        int size = priQueue.add(first);
+        cout << "size of vector: " << size  << endl;
         cout << "added patient to patient list" << endl;
+
     }else
         cout << "enter correct priority code"<< endl;
 
@@ -157,8 +159,8 @@ void peekNextCmd(PatientPriorityQueue &priQueue) {
     // TODO: shows next patient to be seen
     Patient patient = priQueue.peek();
     //cout << patient.to_string() << endl;
+    cout << patient.to_string() << endl;
 }
-
 void removePatientCmd(PatientPriorityQueue &priQueue) {
     // TODO: removes and shows next patient to be seen
 }
@@ -210,7 +212,7 @@ void welcome() {
 void goodbye() {
     // TODO
     //return 0;
-    exit;
+    //exit;
 }
 
 void help() {
