@@ -48,6 +48,7 @@ void showHighestPriorityCodeCmd(PatientPriorityQueue &);
 //Display current highest priority code on the list
 
 int main() {
+
     // declare variables
     string line;
 
@@ -192,12 +193,20 @@ string delimitBySpace(string &s) {
 
 void welcome() {
     // TODO
+    cout << "************************************************************"<< endl;
+    cout << "*    Welcome to patient priority and waiting list system   *"<< endl;
+    cout << "*                                                          *"<< endl;
+    cout << "*     to learn all commands of the system type 'help'      *"<< endl;
+    cout << "*     then hit 'space' key then hit 'enter'                *"<< endl;
+    cout << "*     -because of how the system work, any command:        *"<< endl;
+    cout << "*   'help', 'next', 'list' will be required hit space key  *"<< endl;
+    cout << "*                 before hit enter key                     *"<< endl;
+    cout << "************************************************************"<< endl;
 }
 
 void goodbye() {
     // TODO
-    //return 0;
-    //exit;
+    exit(0);
 }
 
 void help() {
