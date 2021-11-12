@@ -18,10 +18,9 @@ public:
     void add(Patient);
     string peek() const;
     void next();
-    //void remove();
     string remove();
     void list();
-    int getSize();
+    int Size();
     int getHighestPriorityCode();
     string to_string();
 
@@ -43,7 +42,7 @@ private:
  *
  */
 PatientPriorityQueue::PatientPriorityQueue() {
-    size = 0;
+    size = 1;
     capacity = 0;
     highestPriorityCode = 4;
     count = 1;
@@ -87,6 +86,7 @@ void PatientPriorityQueue::add(Patient newPatient) {
     newPatient.setArrivalOrder(count);
     patients.push_back(newPatient);
     count++;
+    size++;
     updatePriorityCode();
 }
 
@@ -94,8 +94,9 @@ void PatientPriorityQueue::add(Patient newPatient) {
  *
  */
 string PatientPriorityQueue::remove() {
-   //patients.push_back(patients.front());
+
    stringstream ss;
+   if(patients.size() > 0)
    for(int i = 0; i < patients.size(); i++){
        if (patients[i].getPriorityCode() == highestPriorityCode){
            vector<Patient>::iterator it;
@@ -104,7 +105,10 @@ string PatientPriorityQueue::remove() {
            patients.erase(it);
            highestPriorityCode = 4;
            updatePriorityCode();
+           size--;
        }
+   }else{
+       ss << "There are no patients in the waiting area.";
    }
    return ss.str();
 }
@@ -112,7 +116,7 @@ string PatientPriorityQueue::remove() {
 /*
  *
  */
-int PatientPriorityQueue::getSize() {
+int PatientPriorityQueue::Size() {
     return patients.size();
 }
 

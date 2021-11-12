@@ -134,7 +134,7 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
 }
 
 void showHeapSizeCmd(PatientPriorityQueue &priQueue){
-    cout << priQueue.getSize() << endl;
+    cout << priQueue.Size() << endl;
 }
 
 void showHighestPriorityCodeCmd(PatientPriorityQueue &priQueue){
@@ -152,6 +152,7 @@ void removePatientCmd(PatientPriorityQueue &priQueue) {
 }
 
 void showPatientListCmd(PatientPriorityQueue &priQueue) {
+    cout << "# patients waiting: " << priQueue.Size() << endl;
     cout << "  Arrival #   Priority Code   Patient Name\n"
          << "+-----------+---------------+--------------+\n";
     cout << priQueue.to_string();

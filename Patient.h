@@ -66,12 +66,21 @@ Patient::Patient(string name, int code) {
  */
 string Patient::to_string() {
     stringstream  ss;
-    if(priorityCode == 4)
-        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "         " << name;
-    else if(priorityCode == 1 || priorityCode == 2)
-        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "       " << name;
-    else
-        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "          " << name;
+    if(arrivalOrder < 10){
+        if(priorityCode == 4)
+            ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "         " << name;
+        else if(priorityCode == 1 || priorityCode == 2)
+            ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "       " << name;
+        else
+            ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "          " << name;
+    }else{
+        if(priorityCode == 4)
+            ss<< "    " << arrivalOrder << "        " << priorities[priorityCode] << "         " << name;
+        else if(priorityCode == 1 || priorityCode == 2)
+            ss<< "    " << arrivalOrder << "        " << priorities[priorityCode] << "       " << name;
+        else
+            ss<< "    " << arrivalOrder << "        " << priorities[priorityCode] << "          " << name;
+    }
     return ss.str();
 }
 
