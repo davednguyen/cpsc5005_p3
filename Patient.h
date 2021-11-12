@@ -22,6 +22,7 @@ public:
     void setArrivalOrder(int);
     int getPriorityCode();
     string getName();
+    int getArrivalOrder();
 
     Patient operator + (const Patient &); // Overloaded +
     Patient operator - (const Patient &); // Overloaded -
@@ -45,6 +46,7 @@ public:
 private:
     //variables
     string name;
+    string priorities[5] = {" ", "immediate", "emergency", "urgent", "minimal" };
     //string priorityCode;
     int priorityCode;
     int arrivalOrder;
@@ -64,7 +66,12 @@ Patient::Patient(string name, int code) {
  */
 string Patient::to_string() {
     stringstream  ss;
-    ss << "Name: " << name << " priority code: " << priorityCode ;
+    if(priorityCode == 4)
+        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "         " << name;
+    else if(priorityCode == 1 || priorityCode == 2)
+        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "       " << name;
+    else
+        ss<< "    " << arrivalOrder << "         " << priorities[priorityCode] << "          " << name;
     return ss.str();
 }
 
@@ -75,6 +82,19 @@ int Patient::getPriorityCode() {
     return priorityCode;
 }
 
+/*
+ *
+ */
+int Patient::getArrivalOrder() {
+    return arrivalOrder;
+}
+
+/*
+ *
+ */
+string Patient::getName() {
+    return name;
+}
 /*
  *
  */

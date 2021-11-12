@@ -41,6 +41,12 @@ void execCommandsFromFileCmd(string, PatientPriorityQueue &);
 string delimitBySpace(string &);
 // Delimits (by space) the string from user or file input.
 
+void showHeapSizeCmd(PatientPriorityQueue &);
+// Displays size of patient list.
+
+void showHighestPriorityCodeCmd(PatientPriorityQueue &);
+//Display current highest priority code on the list
+
 int main() {
     // declare variables
     string line;
@@ -80,6 +86,10 @@ bool processLine(string line, PatientPriorityQueue &priQueue) {
         showPatientListCmd(priQueue);
     else if (cmd == "load")
         execCommandsFromFileCmd(line, priQueue);
+    else if (cmd == "size")
+        showHeapSizeCmd(priQueue);
+    else if (cmd == "code")
+        showHighestPriorityCodeCmd( priQueue);
     else if (cmd == "quit")
         return false;
     else
@@ -113,32 +123,38 @@ void addPatientCmd(string line, PatientPriorityQueue &priQueue) {
         code = 4;
 
     if(code != 0){
-        Patient first(name, code);
-        // TODO: add logic to remove leading/trailing spaces
-        // TODO: validate priority is between 1 and 4
-        // TODO: add patient
-        cout << "patient created :" << name << "with codes: " << code << " added into patient portal" << endl;
-        int size = priQueue.add(first);
-        cout << "size of vector: " << size  << endl;
-        cout << "added patient to patient list" << endl;
-
+        Patient patient(name, code);
+        stringstream ss;
+        priQueue.add(patient);
+        ss << "Added patient " << '"'<< patient.getName() << '"' << " to the priority system";
+        cout << ss.str();
     }else
         cout << "enter correct priority code"<< endl;
 
 }
 
+void showHeapSizeCmd(PatientPriorityQueue &priQueue){
+    cout << priQueue.getSize() << endl;
+}
+
+void showHighestPriorityCodeCmd(PatientPriorityQueue &priQueue){
+    cout << priQueue.getHighestPriorityCode() << endl;
+}
+
 void peekNextCmd(PatientPriorityQueue &priQueue) {
     // TODO: shows next patient to be seen
-    Patient patient = priQueue.peek();
-    cout << patient.to_string() << endl;
+    string patient = priQueue.peek();
+    cout << patient << endl;
 }
 void removePatientCmd(PatientPriorityQueue &priQueue) {
     // TODO: removes and shows next patient to be seen
+    cout << priQueue.remove();
 }
 
 void showPatientListCmd(PatientPriorityQueue &priQueue) {
     cout << "  Arrival #   Priority Code   Patient Name\n"
          << "+-----------+---------------+--------------+\n";
+    cout << priQueue.to_string();
     // TODO: shows patient detail in heap order
 }
 
