@@ -15,11 +15,8 @@ using namespace std;
 class PatientPriorityQueue{
 public:
     PatientPriorityQueue();
-    //~PatientPriorityQueue();
     int add(Patient);
     Patient peek() const;
-    //int peek() const;
-    //int peek();
     void next();
     void remove();
     void list();
@@ -44,12 +41,9 @@ PatientPriorityQueue::PatientPriorityQueue() {
     capacity = 0;
 }
 Patient PatientPriorityQueue::peek() const {
-//int PatientPriorityQueue::peek() const {
-//    assert(!empty());
-    //return patients.at(0);
-    return patients.front();
-    //return patients.back();
-    //return patients.size();
+    if(patients.size() > 0){
+        return patients.front();
+    }
 }
 
 int PatientPriorityQueue::add(Patient newPatient) {
